@@ -1,0 +1,1623 @@
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>VESTORA</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #07111f;
+    color: white;
+}
+
+.header {
+    text-align: center;
+    padding: 25px;
+    border-bottom: 1px solid #1d3045;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #20d9a6;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.home {
+    text-align: center;
+    margin-top: 100px;
+    padding: 20px;
+}
+
+.home h1 {
+    font-size: 32px;
+}
+
+.home p {
+    color: #91a0b5;
+    margin-bottom: 35px;
+}
+
+.buttons {
+    max-width: 350px;
+    margin: auto;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-button {
+    background: #20d9a6;
+    border: none;
+    color: #07111f;
+}
+
+.register-button {
+    background: transparent;
+    border: 1px solid #20d9a6;
+    color: white;
+}
+
+.form-box {
+    width: 90%;
+    max-width: 430px;
+    margin: 50px auto;
+    background: #102033;
+    padding: 28px;
+    border-radius: 15px;
+}
+
+.form-box h2 {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.form-box p {
+    text-align: center;
+    color: #91a0b5;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 7px;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    box-sizing: border-box;
+    background: #07111f;
+    border: 1px solid #30445d;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #20d9a6;
+}
+
+.password-box {
+    position: relative;
+}
+
+.password-box input {
+    padding-left: 55px;
+}
+
+.show-password {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 45px;
+    height: 38px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #20d9a6;
+    font-size: 12px;
+}
+
+.submit {
+    background: #20d9a6;
+    border: none;
+    color: #07111f;
+    margin-top: 22px;
+}
+
+.back {
+    text-align: center;
+    margin-top: 18px;
+    color: #20d9a6;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    color: #91a0b5;
+    font-size: 12px;
+}
+
+.check input {
+    width: 17px;
+    height: 17px;
+}
+
+
+/* =========================
+   لوحة المستخدم
+========================= */
+
+.dashboard {
+    padding-bottom: 90px;
+    min-height: calc(100vh - 80px);
+}
+
+.dashboard-section {
+    display: none;
+}
+
+.dashboard-section.active {
+    display: block;
+}
+
+.dashboard-header {
+    padding: 25px 20px 10px;
+}
+
+.dashboard-header h2 {
+    margin: 0 0 8px;
+}
+
+.dashboard-header p {
+    color: #91a0b5;
+}
+
+
+/* الرصيد */
+
+.balance-card {
+    margin: 20px;
+    padding: 25px;
+    border-radius: 16px;
+    background: #102b36;
+    border: 1px solid #1d4650;
+}
+
+.balance-title {
+    color: #91a0b5;
+    font-size: 14px;
+}
+
+.balance-number {
+    font-size: 34px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.balance-profit {
+    color: #20d9a6;
+    margin-top: 10px;
+}
+
+
+/* الإحصائيات */
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 0 20px;
+}
+
+.stat-card {
+    background: #102033;
+    border: 1px solid #1d3045;
+    border-radius: 13px;
+    padding: 18px;
+}
+
+.stat-card span {
+    display: block;
+    color: #91a0b5;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+
+/* الإجراءات */
+
+.section-title {
+    padding: 25px 20px 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.quick-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 0 20px;
+}
+
+.quick-action {
+    background: #102033;
+    border: 1px solid #1d3045;
+    color: white;
+    padding: 18px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.quick-action .icon {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+
+/* الاستثمار */
+
+.investment-card {
+    margin: 20px;
+    padding: 20px;
+    background: #102033;
+    border: 1px solid #1d3045;
+    border-radius: 13px;
+}
+
+.investment-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.investment-status {
+    color: #20d9a6;
+    font-size: 12px;
+}
+
+.investment-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    color: #91a0b5;
+}
+
+
+/* المحفظة */
+
+.wallet-card {
+    margin: 20px;
+    padding: 22px;
+    background: #102033;
+    border: 1px solid #1d3045;
+    border-radius: 15px;
+}
+
+.wallet-buttons {
+    padding: 0 20px;
+}
+
+.deposit {
+    background: #20d9a6;
+    border: none;
+    color: #07111f;
+}
+
+.withdraw {
+    background: #102033;
+    border: 1px solid #20d9a6;
+    color: white;
+}
+
+
+/* الدعم */
+
+.support-box {
+    margin: 0 20px 20px;
+    padding: 20px;
+    background: #102033;
+    border: 1px solid #1d3045;
+    border-radius: 13px;
+}
+
+.support-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #1d3045;
+}
+
+.support-item:last-child {
+    border-bottom: none;
+}
+
+.support-item span {
+    display: block;
+    color: #91a0b5;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+
+/* الحساب */
+
+.profile-card {
+    margin: 20px;
+    padding: 25px;
+    background: #102033;
+    border: 1px solid #1d3045;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.avatar {
+    width: 70px;
+    height: 70px;
+    margin: auto;
+    border-radius: 50%;
+    background: #20d9a6;
+    color: #07111f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.profile-card p {
+    color: #91a0b5;
+}
+
+.profile-id {
+    color: #20d9a6 !important;
+    font-weight: bold;
+}
+
+.account-button {
+    width: calc(100% - 40px);
+    margin: 10px 20px;
+    background: #102033;
+    border: 1px solid #1d3045;
+    color: white;
+}
+
+.logout {
+    background: #3a1720;
+    border-color: #7a2938;
+    color: #ff9aaa;
+}
+
+
+/* شريط التنقل */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 75px;
+    background: #0b1828;
+    border-top: 1px solid #1d3045;
+    display: flex;
+    z-index: 100;
+}
+
+.nav-item {
+    flex: 1;
+    text-align: center;
+    padding-top: 10px;
+    color: #718198;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nav-icon {
+    display: block;
+    font-size: 22px;
+    margin-bottom: 4px;
+}
+
+.nav-item.active {
+    color: #20d9a6;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+<div class="logo">
+
+VESTORA <span>Capital</span>
+
+</div>
+
+</header>
+
+
+
+<!-- الصفحة الرئيسية -->
+
+<section id="home" class="page active">
+
+<div class="home">
+
+<h1>
+مرحباً بك في VESTORA
+</h1>
+
+<p>
+منصة رقمية لإدارة استثماراتك
+</p>
+
+<div class="buttons">
+
+<button
+class="login-button"
+onclick="showLogin()">
+
+تسجيل الدخول
+
+</button>
+
+
+<button
+class="register-button"
+onclick="showRegister()">
+
+إنشاء حساب
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- تسجيل الدخول -->
+
+<section id="loginPage" class="page">
+
+<div class="form-box">
+
+<h2>
+تسجيل الدخول
+</h2>
+
+<p>
+أدخل رقم هاتفك وكلمة المرور
+</p>
+
+
+<label>
+رقم الهاتف
+</label>
+
+<input
+id="loginPhone"
+type="tel"
+inputmode="numeric"
+placeholder="+964 7XX XXX XXXX">
+
+
+<label>
+كلمة المرور
+</label>
+
+<div class="password-box">
+
+<input
+id="loginPassword"
+type="password"
+placeholder="كلمة المرور">
+
+<button
+type="button"
+class="show-password"
+onclick="togglePassword('loginPassword', this)">
+
+إظهار
+
+</button>
+
+</div>
+
+
+<button
+type="button"
+class="submit"
+onclick="loginUser()">
+
+تسجيل الدخول
+
+</button>
+
+
+<div
+class="back"
+onclick="showHome()">
+
+← العودة
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- إنشاء الحساب -->
+
+<section id="registerPage" class="page">
+
+<div class="form-box">
+
+<h2>
+إنشاء حساب جديد
+</h2>
+
+<p>
+أنشئ حسابك في VESTORA Capital
+</p>
+
+
+<label>
+الاسم الكامل
+</label>
+
+<input
+id="registerName"
+type="text"
+placeholder="أدخل اسمك الكامل">
+
+
+<label>
+رقم الهاتف
+</label>
+
+<input
+id="registerPhone"
+type="tel"
+inputmode="numeric"
+placeholder="+964 7XX XXX XXXX">
+
+
+<label>
+كلمة المرور
+</label>
+
+<div class="password-box">
+
+<input
+id="registerPassword"
+type="password"
+placeholder="8 أحرف أو أرقام على الأقل">
+
+<button
+type="button"
+class="show-password"
+onclick="togglePassword('registerPassword', this)">
+
+إظهار
+
+</button>
+
+</div>
+
+
+<label>
+تأكيد كلمة المرور
+</label>
+
+<div class="password-box">
+
+<input
+id="confirmPassword"
+type="password"
+placeholder="أعد كتابة كلمة المرور">
+
+<button
+type="button"
+class="show-password"
+onclick="togglePassword('confirmPassword', this)">
+
+إظهار
+
+</button>
+
+</div>
+
+
+<div class="check">
+
+<input
+id="terms"
+type="checkbox">
+
+<span>
+أوافق على شروط الاستخدام وسياسة الخصوصية
+</span>
+
+</div>
+
+
+<button
+type="button"
+class="submit"
+onclick="registerUser()">
+
+إنشاء الحساب
+
+</button>
+
+
+<div
+class="back"
+onclick="showHome()">
+
+← العودة
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- لوحة المستخدم -->
+
+<section id="dashboardPage" class="page">
+
+<div class="dashboard">
+
+
+<!-- الرئيسية -->
+
+<div
+id="dashboardHome"
+class="dashboard-section active">
+
+<div class="dashboard-header">
+
+<h2 id="welcomeName">
+مرحباً 👋
+</h2>
+
+<p>
+هذه نظرة عامة على حسابك
+</p>
+
+</div>
+
+
+<div class="balance-card">
+
+<div class="balance-title">
+الرصيد المتاح
+</div>
+
+<div class="balance-number">
+$0.00
+</div>
+
+<div class="balance-profit">
+الأرباح الحالية: $0.00
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat-card">
+
+<span>
+إجمالي الاستثمار
+</span>
+
+<strong>
+$0.00
+</strong>
+
+</div>
+
+
+<div class="stat-card">
+
+<span>
+إجمالي الأرباح
+</span>
+
+<strong>
+$0.00
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="section-title">
+إجراءات سريعة
+</div>
+
+
+<div class="quick-actions">
+
+<div
+class="quick-action"
+onclick="showDashboardSection('wallet')">
+
+<div class="icon">
+💰
+</div>
+
+إيداع
+
+</div>
+
+
+<div
+class="quick-action"
+onclick="showDashboardSection('wallet')">
+
+<div class="icon">
+💸
+</div>
+
+سحب
+
+</div>
+
+
+<div
+class="quick-action"
+onclick="showDashboardSection('investments')">
+
+<div class="icon">
+📈
+</div>
+
+استثماراتي
+
+</div>
+
+
+<div
+class="quick-action"
+onclick="showDashboardSection('wallet')">
+
+<div class="icon">
+📜
+</div>
+
+العمليات
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- الاستثمار -->
+
+<div
+id="investments"
+class="dashboard-section">
+
+<div class="dashboard-header">
+
+<h2>
+استثماراتي 📈
+</h2>
+
+<p>
+إدارة ومتابعة استثماراتك
+</p>
+
+</div>
+
+
+<div class="investment-card">
+
+<div class="investment-top">
+
+<strong>
+لا توجد استثمارات
+</strong>
+
+<span class="investment-status">
+جاهز
+</span>
+
+</div>
+
+
+<div class="investment-row">
+
+<span>
+المبلغ
+</span>
+
+<strong>
+$0.00
+</strong>
+
+</div>
+
+
+<div class="investment-row">
+
+<span>
+الأرباح
+</span>
+
+<strong>
+$0.00
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- المحفظة -->
+
+<div
+id="wallet"
+class="dashboard-section">
+
+<div class="dashboard-header">
+
+<h2>
+المحفظة 💰
+</h2>
+
+<p>
+الإيداع والسحب والعمليات
+</p>
+
+</div>
+
+
+<div class="wallet-card">
+
+<div class="balance-title">
+الرصيد الحالي
+</div>
+
+<div class="balance-number">
+$0.00
+</div>
+
+</div>
+
+
+<div class="wallet-buttons">
+
+<button
+type="button"
+class="deposit">
+
+➕ إيداع
+
+</button>
+
+
+<button
+type="button"
+class="withdraw">
+
+➖ سحب
+
+</button>
+
+</div>
+
+
+<div class="section-title">
+فريق الدعم
+</div>
+
+
+<div class="support-box">
+
+<div class="support-item">
+
+<strong>
+💬 التواصل مع الدعم
+</strong>
+
+<span>
+تحتاج مساعدة بخصوص الإيداع أو السحب؟
+</span>
+
+</div>
+
+
+<div class="support-item">
+
+<strong>
+🎫 طلب مساعدة
+</strong>
+
+<span>
+يمكنك إرسال طلب إلى فريق الدعم.
+</span>
+
+</div>
+
+
+<div class="support-item">
+
+<strong>
+❓ الأسئلة الشائعة
+</strong>
+
+<span>
+إجابات عن الأسئلة المتعلقة بالمحفظة.
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- الحساب -->
+
+<div
+id="account"
+class="dashboard-section">
+
+<div class="dashboard-header">
+
+<h2>
+الحساب 👤
+</h2>
+
+<p>
+إدارة معلومات حسابك
+</p>
+
+</div>
+
+
+<div class="profile-card">
+
+<div class="avatar">
+👤
+</div>
+
+<h2 id="profileName">
+المستخدم
+</h2>
+
+<p id="profilePhone">
+رقم الهاتف
+</p>
+
+<p
+id="profileId"
+class="profile-id">
+
+ID الحساب: ------
+
+</p>
+
+</div>
+
+
+<button
+type="button"
+class="account-button">
+
+👤 معلومات الحساب
+
+</button>
+
+
+<button
+type="button"
+class="account-button">
+
+🔐 تغيير كلمة المرور
+
+</button>
+
+
+<button
+type="button"
+class="account-button">
+
+⚙️ الإعدادات
+
+</button>
+
+
+<button
+type="button"
+class="account-button logout"
+onclick="logoutUser()">
+
+🚪 تسجيل الخروج
+
+</button>
+
+</div>
+
+
+</div>
+
+
+
+<!-- شريط التنقل -->
+
+<nav class="bottom-nav">
+
+
+<div
+class="nav-item active"
+onclick="showDashboardSection('dashboardHome', this)">
+
+<span class="nav-icon">
+🏠
+</span>
+
+الرئيسية
+
+</div>
+
+
+<div
+class="nav-item"
+onclick="showDashboardSection('investments', this)">
+
+<span class="nav-icon">
+📈
+</span>
+
+الاستثمار
+
+</div>
+
+
+<div
+class="nav-item"
+onclick="showDashboardSection('wallet', this)">
+
+<span class="nav-icon">
+💰
+</span>
+
+المحفظة
+
+</div>
+
+
+<div
+class="nav-item"
+onclick="showDashboardSection('account', this)">
+
+<span class="nav-icon">
+👤
+</span>
+
+الحساب
+
+</div>
+
+
+</nav>
+
+</section>
+
+
+
+<script>
+
+
+/* =========================
+   الصفحات
+========================= */
+
+function hidePages() {
+
+document.getElementById("home")
+.classList.remove("active");
+
+document.getElementById("loginPage")
+.classList.remove("active");
+
+document.getElementById("registerPage")
+.classList.remove("active");
+
+document.getElementById("dashboardPage")
+.classList.remove("active");
+
+}
+
+
+function showHome() {
+
+hidePages();
+
+document.getElementById("home")
+.classList.add("active");
+
+}
+
+
+function showLogin() {
+
+hidePages();
+
+document.getElementById("loginPage")
+.classList.add("active");
+
+}
+
+
+function showRegister() {
+
+hidePages();
+
+document.getElementById("registerPage")
+.classList.add("active");
+
+}
+
+
+/* =========================
+   إنشاء ID من 6 أرقام
+========================= */
+
+function generateAccountId() {
+
+var id;
+
+do {
+
+id =
+Math.floor(100000 + Math.random() * 900000)
+.toString();
+
+} while (
+id === localStorage.getItem("vestoraId")
+);
+
+return id;
+
+}
+
+
+/* =========================
+   إنشاء الحساب
+========================= */
+
+function registerUser() {
+
+var name =
+document.getElementById("registerName")
+.value
+.trim();
+
+var phone =
+document.getElementById("registerPhone")
+.value
+.trim();
+
+var password =
+document.getElementById("registerPassword")
+.value;
+
+var confirm =
+document.getElementById("confirmPassword")
+.value;
+
+var terms =
+document.getElementById("terms")
+.checked;
+
+
+/* الاسم */
+
+if (name === "") {
+
+alert("يرجى إدخال الاسم");
+
+return;
+
+}
+
+
+/* رقم الهاتف */
+
+var phoneDigits =
+phone.replace(/\D/g, "");
+
+
+if (phoneDigits.length < 10) {
+
+alert(
+"رقم الهاتف يجب أن يحتوي على 10 أرقام على الأقل"
+);
+
+return;
+
+}
+
+
+/* كلمة المرور */
+
+if (password.length < 8) {
+
+alert(
+"كلمة المرور يجب أن تحتوي على 8 أحرف أو أرقام على الأقل"
+);
+
+return;
+
+}
+
+
+/* تأكيد كلمة المرور */
+
+if (password !== confirm) {
+
+alert(
+"كلمتا المرور غير متطابقتين"
+);
+
+return;
+
+}
+
+
+/* الشروط */
+
+if (!terms) {
+
+alert(
+"يرجى الموافقة على شروط الاستخدام"
+);
+
+return;
+
+}
+
+
+/* إنشاء ID */
+
+var accountId =
+generateAccountId();
+
+
+/* حفظ البيانات */
+
+localStorage.setItem(
+"vestoraName",
+name
+);
+
+localStorage.setItem(
+"vestoraPhone",
+phoneDigits
+);
+
+localStorage.setItem(
+"vestoraPassword",
+password
+);
+
+localStorage.setItem(
+"vestoraId",
+accountId
+);
+
+
+/* رسالة النجاح */
+
+alert(
+"تم إنشاء الحساب بنجاح\n\nID الحساب: " +
+accountId
+);
+
+
+/* فتح لوحة المستخدم */
+
+openDashboard();
+
+}
+
+
+/* =========================
+   تسجيل الدخول
+========================= */
+
+function loginUser() {
+
+var phone =
+document.getElementById("loginPhone")
+.value
+.trim();
+
+var password =
+document.getElementById("loginPassword")
+.value;
+
+
+var phoneDigits =
+phone.replace(/\D/g, "");
+
+
+var savedPhone =
+localStorage.getItem("vestoraPhone");
+
+var savedPassword =
+localStorage.getItem("vestoraPassword");
+
+
+if (!savedPhone) {
+
+alert(
+"لا يوجد حساب. يرجى إنشاء حساب أولاً."
+);
+
+return;
+
+}
+
+
+if (
+phoneDigits === savedPhone &&
+password === savedPassword
+) {
+
+openDashboard();
+
+} else {
+
+alert(
+"رقم الهاتف أو كلمة المرور غير صحيحة"
+);
+
+}
+
+}
+
+
+/* =========================
+   فتح لوحة المستخدم
+========================= */
+
+function openDashboard() {
+
+var name =
+localStorage.getItem("vestoraName")
+|| "المستخدم";
+
+var phone =
+localStorage.getItem("vestoraPhone")
+|| "";
+
+var accountId =
+localStorage.getItem("vestoraId");
+
+
+/* إذا كان الحساب قديمًا بدون ID */
+
+if (!accountId) {
+
+accountId =
+generateAccountId();
+
+localStorage.setItem(
+"vestoraId",
+accountId
+);
+
+}
+
+
+/* عرض البيانات */
+
+document.getElementById("welcomeName")
+.innerText =
+"مرحباً، " + name + " 👋";
+
+
+document.getElementById("profileName")
+.innerText =
+name;
+
+
+document.getElementById("profilePhone")
+.innerText =
+phone;
+
+
+document.getElementById("profileId")
+.innerText =
+"ID الحساب: " + accountId;
+
+
+/* فتح اللوحة */
+
+hidePages();
+
+document.getElementById("dashboardPage")
+.classList.add("active");
+
+
+showDashboardSection(
+"dashboardHome"
+);
+
+}
+
+
+/* =========================
+   أقسام لوحة المستخدم
+========================= */
+
+function showDashboardSection(
+id,
+element
+) {
+
+var sections =
+document.querySelectorAll(
+".dashboard-section"
+);
+
+
+sections.forEach(
+function(section) {
+
+section.classList.remove("active");
+
+}
+);
+
+
+var selected =
+document.getElementById(id);
+
+
+if (selected) {
+
+selected.classList.add("active");
+
+}
+
+
+var navItems =
+document.querySelectorAll(
+".nav-item"
+);
+
+
+navItems.forEach(
+function(item) {
+
+item.classList.remove("active");
+
+}
+);
+
+
+if (element) {
+
+element.classList.add("active");
+
+} else {
+
+navItems[0]
+.classList.add("active");
+
+}
+
+}
+
+
+/* =========================
+   تسجيل الخروج
+========================= */
+
+function logoutUser() {
+
+hidePages();
+
+showHome();
+
+}
+
+
+/* =========================
+   إظهار كلمة المرور
+========================= */
+
+function togglePassword(
+id,
+button
+) {
+
+var password =
+document.getElementById(id);
+
+
+if (
+password.type === "password"
+) {
+
+password.type = "text";
+
+button.innerText =
+"إخفاء";
+
+} else {
+
+password.type = "password";
+
+button.innerText =
+"إظهار";
+
+}
+
+}
+
+</script>
+
+
+</body>
+
+</html>
